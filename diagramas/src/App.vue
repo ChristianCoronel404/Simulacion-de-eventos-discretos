@@ -15,11 +15,8 @@
       </nav>
     </header>
 
-    <!-- Contenedor del ejercicio -->
     <main class="exercise-content">
-      <!-- Tarjeta con sombra y bordes redondeados -->
       <div class="exercise-card-wrapper">
-        <!-- El componente actual (Problema1.vue, Problema2.vue, etc.) se inserta aquí -->
         <component :is="getComponenteActual()" />
       </div>
     </main>

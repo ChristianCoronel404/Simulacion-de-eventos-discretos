@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 <label>Número de horas por día (horas):</label>
-                <input type="number" v-model.number="numHoras" min="1" />
+                <input type="number" v-model.number="numHoras" min="1" max="24" />
             </div>
 
 
@@ -156,8 +156,18 @@ export default {
         simularTienda() {
             // Validaciones
             const sumaProb = this.probArt0 + this.probArt1 + this.probArt2 + this.probArt3;
-            if (this.numHoras < 1 || this.numSimulaciones < 1 || this.costoDia < 0 || this.costoArticulo < 0 || this.precioVenta < 0 || this.minClientes < 0 || this.maxClientes < this.minClientes || Math.abs(sumaProb - 1) > 0.01) {
-                this.errorMessage = "Verifica que todos los valores sean válidos y que las probabilidades sumen 1.";
+            if (
+                this.numHoras < 1 || 
+                this.numHoras > 24 || // Validación adicional
+                this.numSimulaciones < 1 || 
+                this.costoDia < 0 || 
+                this.costoArticulo < 0 || 
+                this.precioVenta < 0 || 
+                this.minClientes < 0 || 
+                this.maxClientes < this.minClientes || 
+                Math.abs(sumaProb - 1) > 0.01
+            ) {
+                this.errorMessage = "Verifica que todos los valores sean válidos y que las probabilidades sumen 1. Además, el número de horas no puede ser mayor a 24.";
                 return;
             }
             this.errorMessage = '';

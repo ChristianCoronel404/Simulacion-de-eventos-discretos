@@ -71,7 +71,7 @@ export default {
   name: "Problema1",
   data() {
     return {
-      capital: 0,
+      capital: 5000,
       tiempo: 1,
       resultado: [],
       errorMessage: ''
@@ -89,42 +89,40 @@ export default {
   },
   methods: {
     calcular() {
-      if (this.capital < 0) {
-        this.errorMessage = "El capital inicial debe ser mayor o igual a 0.";
+        if (this.capital < 0) {
+            this.errorMessage = "El capital inicial debe ser mayor o igual a 0.";
+            this.resultado = [];
+            return;
+        }
+        if (this.tiempo < 1) {
+            this.errorMessage = "El tiempo de depósito debe ser al menos 1 año.";
+            this.resultado = [];
+            return;
+        }
+        this.errorMessage = '';
         this.resultado = [];
-        return;
-      }
-      if (this.tiempo < 1) {
-        this.errorMessage = "El tiempo de depósito debe ser al menos 1 año.";
-        this.resultado = [];
-        return;
-      }
-      this.errorMessage = '';
-      this.resultado = [];
 
-      let k = this.capital;
-      let t = this.tiempo;
-      let c = 0;
+        let k = this.capital;
+        let t = this.tiempo;
 
-      while (c < t) {
-        let i = 0;
-        if (k >= 0 && k <= 10000) i = 0.035;
-        else if (k > 10000 && k <= 100000) i = 0.037;
-        else i = 0.04;
+        let tasa = 0;
+        if (k >= 0 && k <= 10000) tasa = 0.035;
+        else if (k > 10000 && k <= 100000) tasa = 0.037;
+        else tasa = 0.04;
 
-        let I = k * i;
-        let capitalFinal = k + I;
+        for (let c = 0; c < t; c++) {
+            let I = k * tasa; 
+            let capitalFinal = k + I;
 
-        this.resultado.push({
-          capitalInicial: k,
-          interes: I,
-          capitalFinal: capitalFinal,
-          tasa: i
-        });
+            this.resultado.push({
+                capitalInicial: k,
+                interes: I,
+                capitalFinal: capitalFinal,
+                tasa: tasa
+            });
 
-        k = capitalFinal;
-        c++;
-      }
+            k = capitalFinal; 
+        }
     }
   }
 };

@@ -148,7 +148,7 @@ export default {
             this.errorMessage = '';
             this.resultados = [];
 
-            const PERIODO_REVISION = 7; // fijo
+            const PERIODO_REVISION = 7; 
 
             for (let s = 0; s < this.numSimulaciones; s++) {
                 let inv = this.capacidadBodega;
@@ -224,7 +224,6 @@ export default {
 </script>
 
 <style scoped>
-/* El estilo se mantiene igual que tu versión anterior */
 .app-container { display: flex; width: 100%; height: 100%; font-family: 'Inter', sans-serif; }
 .column { flex: 1; display: flex; flex-direction: column; padding: 1.5rem; box-sizing: border-box; overflow-y: auto; }
 .input-column { background: #d0f0c0; border-top-left-radius: 15px; border-bottom-left-radius: 15px; }

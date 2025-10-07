@@ -143,7 +143,6 @@
     },
     methods: {
       generarPoisson(lambda) {
-        // Algoritmo Knuth para Poisson
         let L = Math.exp(-lambda);
         let k = 0;
         let p = 1;
